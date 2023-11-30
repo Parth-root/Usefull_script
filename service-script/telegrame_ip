@@ -1,0 +1,33 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          telegrame_ip
+# Required-Start:    $all
+# Required-Stop:     $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start telegrame_ip at boot time
+# Description:       Enable service provided by telegrame_ip.
+### END INIT INFO
+#souce function library
+. /lib/lsb/init-functions
+
+start () {
+echo "start" > /home/ghost/init.d/stop_confirm
+bash /home/ghost/init.d/telegrame.sh >/dev/null
+}
+stop () {
+#echo "exit" > /home/ghost/init.d/stop_confirm
+telegram-send "exit official"
+}
+
+case "$1" in 
+start)
+start
+;;
+stop)
+stop
+;;
+*)
+echo "not finding"
+esac
+exit 0

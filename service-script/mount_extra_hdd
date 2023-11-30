@@ -1,0 +1,31 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          mount_extra_hdd
+# Required-Start:    $all
+# Required-Stop:     $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start  mount_extra_hdd at boot time
+# Description:       Enable service provided by  mount_extra_hdd.
+### END INIT INFO
+#souce function library
+. /lib/lsb/init-functions
+
+start () {
+bash /home/ghost/init.d/mount.sh
+}
+stop () {
+echo "exit"
+}
+
+case "$1" in 
+start)
+start
+;;
+stop)
+stop
+;;
+*)
+echo "ERROR"
+esac
+exit 0
